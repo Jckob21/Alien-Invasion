@@ -20,7 +20,7 @@ class AlienInvasion:
         self.ship = Ship(self)
 
         # Create a list of entities
-        self.objects = [self.ship]
+        self.bullets = pygame.sprite.Group()
 
         pygame.display.set_caption("alien invasion")
 
@@ -29,6 +29,7 @@ class AlienInvasion:
         while True:
             self._check_events()
             self._update_screen()
+            self.bullets.update()
             self.ship.update()
 
     def _check_events(self):
@@ -62,14 +63,19 @@ class AlienInvasion:
         elif event.key == pygame.K_q:
             sys.exit()
         elif event.key == pygame.K_SPACE:
-            self.objects.append(Bullet(self))
+            self._fire_bullet()
 
     def _update_screen(self):
         self.screen.fill(self.settings.bg_color)
         self.ship.blitme()
+        for bullet in self.bullets.sprites():
+            bullet.draw_bullet()
 
         pygame.display.flip()
 
+    def _fire_bullet(self):
+        bullet = Bullet(self)
+        self.bullets.add(bullet)
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
