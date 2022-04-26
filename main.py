@@ -4,18 +4,23 @@ import pygame
 
 from settings import Settings
 from ship import Ship
-
+from bullet import Bullet
 
 class AlienInvasion:
     def __init__(self):
         pygame.init()
         self.settings = Settings()
 
-        self.screen = pygame.display.set_mode((self.settings.screen_width,
-                                               self.settings.screen_height))
+        # set screen to full screen mode
+        self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+        self.settings.screen_width = self.screen.get_rect().width
+        self.settings.screen_height = self.screen.get_rect().height
 
         # Create a ship
         self.ship = Ship(self)
+
+        # Create a list of entities
+        self.objects = [self.ship]
 
         pygame.display.set_caption("alien invasion")
 
@@ -56,6 +61,8 @@ class AlienInvasion:
             self.ship.moving_down = True
         elif event.key == pygame.K_q:
             sys.exit()
+        elif event.key == pygame.K_SPACE:
+            self.objects.append(Bullet(self))
 
     def _update_screen(self):
         self.screen.fill(self.settings.bg_color)
