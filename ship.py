@@ -13,9 +13,10 @@ class Ship:
         self.image = pygame.image.load('assets/spaceship.bmp')
         self.rect = self.image.get_rect()
 
-        # Start the ship at the bottom middle of the screen
+        # Place the ship at the bottom middle of the screen
         self.rect.midbottom = self.screen_rect.midbottom
 
+        # Create variables to handle the movement
         self.x = float(self.rect.x)
         self.y = float(self.rect.y)
 
@@ -29,6 +30,7 @@ class Ship:
         self.screen.blit(self.image, self.rect)
 
     def update(self):
+        """Updates ship's attributes. Relies upon it's state."""
         if self.moving_right and self.rect.right < self.screen_rect.right:
             self.x += self.settings.ship_speed
         if self.moving_left and self.rect.left > 0:
@@ -38,7 +40,6 @@ class Ship:
         if self.moving_up and self.rect.top > 0:
             self.y -= self.settings.ship_speed
 
-
-        # adapt the variable to the new value
+        # adapt the image variable to the new value
         self.rect.x = self.x
         self.rect.y = self.y
