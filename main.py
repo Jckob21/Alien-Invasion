@@ -39,6 +39,7 @@ class AlienInvasion:
             self._update_screen()
             self.bullets.update()
             self.ship.update()
+            self._delete_bullets_outside_map()
 
     def _check_events(self):
         """Checks for existing events and handles them."""
@@ -89,6 +90,12 @@ class AlienInvasion:
         """Fires bullet on the top of the sprite of the ship."""
         bullet = Bullet(self)
         self.bullets.add(bullet)
+
+    def _delete_bullets_outside_map(self):
+        """Deletes all bullets that are outside of the map"""
+        for bullet in self.bullets.copy():
+            if bullet.rect.bottom <= 0:
+                self.bullets.remove(bullet)
 
 
 if __name__ == '__main__':
