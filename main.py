@@ -25,6 +25,7 @@ class AlienInvasion:
 
         # Create a list of entities
         self.bullets = pygame.sprite.Group()
+        self.bullets_counter = 0
 
         pygame.display.set_caption("alien invasion")
 
@@ -88,14 +89,17 @@ class AlienInvasion:
 
     def _fire_bullet(self):
         """Fires bullet on the top of the sprite of the ship."""
-        bullet = Bullet(self)
-        self.bullets.add(bullet)
+        if self.bullets_counter < self.settings.bullets_allowed:
+            bullet = Bullet(self)
+            self.bullets.add(bullet)
+            self.bullets_counter += 1
 
     def _delete_bullets_outside_map(self):
         """Deletes all bullets that are outside of the map"""
         for bullet in self.bullets.copy():
             if bullet.rect.bottom <= 0:
                 self.bullets.remove(bullet)
+                self.bullets_counter -= 1
 
 
 if __name__ == '__main__':
