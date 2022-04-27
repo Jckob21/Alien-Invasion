@@ -30,8 +30,8 @@ class AlienInvasion:
         self.bullets_counter = 0
 
         self.aliens = pygame.sprite.Group()
-        self.aliens.add(Alien(self))
-        print(f"{self._get_fleet_positions()}")
+        # Create a fleet of aliens
+        self._create_fleet(self._get_fleet_positions(), 100)
 
         pygame.display.set_caption("alien invasion")
 
@@ -127,7 +127,10 @@ class AlienInvasion:
             i += 1
         return positions
 
-    #def _create_fleet(self):
+    def _create_fleet(self, x_positions, y):
+        for x_position in x_positions:
+            self.aliens.add(Alien(self, x_position, y))
+
 
 
 if __name__ == '__main__':
