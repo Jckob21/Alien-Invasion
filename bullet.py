@@ -1,10 +1,12 @@
 import pygame
 from pygame.sprite import Sprite
 
+
 class Bullet(Sprite):
     """A class to manage bullets fired from the ship"""
 
     def __init__(self, ai_game):
+        """Creates an instance of Bullet using a reference to Alien Invasion game"""
         super().__init__()
         self.screen = ai_game.screen
         self.settings = ai_game.settings
@@ -23,6 +25,7 @@ class Bullet(Sprite):
         pygame.draw.rect(self.screen, self.color, self.rect)
 
     def update(self):
+        """Update the bullet attributes"""
         # update decimal position of the bullet
         self.y -= self.settings.bullet_speed
         # Update the rect position
