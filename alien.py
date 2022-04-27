@@ -4,7 +4,7 @@ from pygame.sprite import Sprite
 
 class Alien(Sprite):
     """Class representing an alien"""
-    def __init__(self, ai_game):
+    def __init__(self, ai_game, x_topmid = 100, y_topmid = 100):
         """Creates an instance of an alien"""
         super().__init__()
         self.screen = ai_game.screen
@@ -16,7 +16,7 @@ class Alien(Sprite):
         self.rect = self.image.get_rect()
 
         # Place the alien in the top left of the screen by default
-        self.rect.topleft = (self.rect.width, self.rect.height)
+        self.rect.midtop = (x_topmid, y_topmid)
 
         # Create variables to handle the movement
         self.x = float(self.rect.x)
