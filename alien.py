@@ -1,10 +1,12 @@
 import pygame.image
 from pygame.sprite import Sprite
 
+
 class Alien(Sprite):
     """Class representing an alien"""
     def __init__(self, ai_game):
         """Creates an instance of an alien"""
+        super().__init__()
         self.screen = ai_game.screen
         self.settings = ai_game.settings
         self.screen_rect = ai_game.screen.get_rect()
@@ -21,8 +23,10 @@ class Alien(Sprite):
         self.y = float(self.rect.y)
 
     def draw_alien(self):
+        """Draws an item"""
         self.screen.blit(self.image, self.rect)
 
     def update(self):
-        self.y -= 1.0
+        """Updates the alien attributes"""
+        self.y += self.settings.alien_speed
         self.rect.y = self.y
