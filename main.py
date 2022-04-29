@@ -46,6 +46,7 @@ class AlienInvasion:
             self._update_screen()
             self.bullets.update()
             self.aliens.update()
+            self._check_collisions()
             self.ship.update()
             self._delete_bullets_outside_map()
 
@@ -134,6 +135,16 @@ class AlienInvasion:
         for x_position in x_positions:
             self.aliens.add(Alien(self, x_position, y))
 
+    def _check_collisions(self):
+        """Checks collisions in the game"""
+        # check if any bullet hit the alien
+        collisions = pygame.sprite.groupcollide(self.bullets, self.aliens, True, True)
+        for _ in collisions:
+            self.bullets_counter -= 1
+
+        # check if any alien collided with the ship
+        if pygame.sprite.spritecollideany(self.ship, self.aliens):
+            print("Game lost!")
 
 if __name__ == '__main__':
     ai = AlienInvasion()
