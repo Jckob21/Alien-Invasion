@@ -1,4 +1,5 @@
 import sys
+from time import sleep
 
 import pygame
 
@@ -34,8 +35,10 @@ class AlienInvasion:
         self.bullets_counter = 0
 
         self.aliens = pygame.sprite.Group()
+
         # Create a fleet of aliens
-        self._create_fleet(self._get_fleet_positions(), 100)
+        self.fleet_positions = self._get_fleet_positions()
+        self._create_fleet(self.fleet_positions, 100)
 
         pygame.display.set_caption("alien invasion")
 
@@ -148,7 +151,31 @@ class AlienInvasion:
 
         # check if any alien collided with the ship
         if pygame.sprite.spritecollideany(self.ship, self.aliens):
-            print("Game lost!")
+            self._handle_ship_dead()
+
+    def _handle_ship_dead(self):
+        """Handles collision of ship and an alien"""
+        # subtract lives_remaining
+        self.game_stats.lives_remaining -= 1
+
+        if self.game_stats.lives_remaining == 0:
+            print("Game lost, do something here")
+        else:
+            self._regenerate_fleet()
+
+    def _regenerate_fleet(self):
+        """Regenerates aliens, centers the ship"""
+        # Empty aliens
+        self.aliens.empty()
+        self.bullets.empty()
+
+        # Create new fleet and center the ship
+        self._create_fleet(self.fleet_positions, 100)
+        self.ship.center_ship()
+
+        # Pause
+        sleep(0.5)
+
 
 if __name__ == '__main__':
     ai = AlienInvasion()

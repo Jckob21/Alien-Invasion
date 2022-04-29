@@ -13,8 +13,7 @@ class Ship:
         self.image = pygame.image.load('assets/spaceship.bmp')
         self.rect = self.image.get_rect()
 
-        # Place the ship at the bottom middle of the screen
-        self.rect.midbottom = self.screen_rect.midbottom
+        self.center_ship()
 
         # Create variables to handle the movement
         self.x = float(self.rect.x)
@@ -43,3 +42,9 @@ class Ship:
         # adapt the image variable to the new value
         self.rect.x = self.x
         self.rect.y = self.y
+
+    def center_ship(self):
+        self.rect.midbottom = self.screen_rect.midbottom
+
+        self.x = float(self.rect.x)
+        self.y = float(self.rect.y)
