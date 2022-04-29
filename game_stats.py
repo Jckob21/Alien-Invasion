@@ -8,3 +8,4 @@ class GameStats:
 
     def reset_stats(self):
         self.lives_remaining = self.settings.maximum_lives
+        self.game_active = True

@@ -50,13 +50,16 @@ class AlienInvasion:
         "   - updates the ship"""
         while True:
             self._check_events()
+
+            if self.game_stats.game_active:
+                self.bullets.update()
+                self.aliens.update()
+                self._check_collisions()
+                self.ship.update()
+                self._delete_bullets_outside_map()
+                self._check_aliens_touch_the_bottom()
+
             self._update_screen()
-            self.bullets.update()
-            self.aliens.update()
-            self._check_collisions()
-            self.ship.update()
-            self._delete_bullets_outside_map()
-            self._check_aliens_touch_the_bottom()
 
     def _check_events(self):
         """Checks for existing events and handles them."""
@@ -160,22 +163,23 @@ class AlienInvasion:
         self.game_stats.lives_remaining -= 1
 
         if self.game_stats.lives_remaining == 0:
-            print("Game lost, do something here")
-        else:
-            self._regenerate_fleet()
+            self.game_stats.game_active = False
+
+        self._regenerate_fleet()
 
     def _regenerate_fleet(self):
         """Regenerates aliens, centers the ship"""
-        # Empty aliens
-        self.aliens.empty()
-        self.bullets.empty()
+        if self.game_stats.game_active:
+            # Empty aliens
+            self.aliens.empty()
+            self.bullets.empty()
 
-        # Create new fleet and center the ship
-        self._create_fleet(self.fleet_positions, 100)
-        self.ship.center_ship()
+            # Create new fleet and center the ship
+            self._create_fleet(self.fleet_positions, 100)
+            self.ship.center_ship()
 
-        # Pause
-        sleep(0.5)
+            # Pause
+            sleep(0.5)
 
     def _check_aliens_touch_the_bottom(self):
         for alien in self.aliens.copy():
