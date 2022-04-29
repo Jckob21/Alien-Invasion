@@ -6,6 +6,7 @@ from settings import Settings
 from ship import Ship
 from bullet import Bullet
 from alien import Alien
+from game_stats import GameStats
 
 
 class AlienInvasion:
@@ -21,6 +22,9 @@ class AlienInvasion:
         self.screen = pygame.display.set_mode((1200, 700))
         self.settings.screen_width = self.screen.get_rect().width
         self.settings.screen_height = self.screen.get_rect().height
+
+        # Create a game stats object
+        self.game_stats = GameStats(self)
 
         # Create a ship
         self.ship = Ship(self)

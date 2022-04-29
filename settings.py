@@ -16,3 +16,6 @@ class Settings:
 
         # alien settings
         self.alien_speed = 0.01
+
+        # game related settings
+        self.maximum_lives = 3
