@@ -56,6 +56,7 @@ class AlienInvasion:
             self._check_collisions()
             self.ship.update()
             self._delete_bullets_outside_map()
+            self._check_aliens_touch_the_bottom()
 
     def _check_events(self):
         """Checks for existing events and handles them."""
@@ -175,6 +176,12 @@ class AlienInvasion:
 
         # Pause
         sleep(0.5)
+
+    def _check_aliens_touch_the_bottom(self):
+        for alien in self.aliens.copy():
+            if alien.rect.bottom >= self.screen.get_rect().bottom:
+                self.aliens.remove(alien)
+                print("Alien should be deleted and score deducted")
 
 
 if __name__ == '__main__':
