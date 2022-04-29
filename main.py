@@ -18,7 +18,7 @@ class AlienInvasion:
 
         # uncomment to set screen to full screen mode
         # self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
-        self.screen = pygame.display.set_mode((1200,700))
+        self.screen = pygame.display.set_mode((1200, 700))
         self.settings.screen_width = self.screen.get_rect().width
         self.settings.screen_height = self.screen.get_rect().height
 
@@ -94,6 +94,7 @@ class AlienInvasion:
         for alien in self.aliens.sprites():
             alien.draw_alien()
 
+        # Update the image view
         pygame.display.flip()
 
     def _fire_bullet(self):
@@ -111,6 +112,7 @@ class AlienInvasion:
                 self.bullets_counter -= 1
 
     def _get_fleet_positions(self):
+        """Method finds x positions for an aliens fleet"""
         # helper object to get information about the image
         alien = Alien(self)
         alien_width = alien.rect.width
@@ -119,7 +121,7 @@ class AlienInvasion:
         space_available = self.settings.screen_width - alien_width
         aliens_available = space_available // (1.2 * alien_width)
 
-        # create positions for the aliens
+        # create positions for the aliens, starting at alien_width
         positions = [alien_width]
         i = 0
         while i < aliens_available - 1:
@@ -128,9 +130,9 @@ class AlienInvasion:
         return positions
 
     def _create_fleet(self, x_positions, y):
+        """Creates a fleet of aliens"""
         for x_position in x_positions:
             self.aliens.add(Alien(self, x_position, y))
-
 
 
 if __name__ == '__main__':
