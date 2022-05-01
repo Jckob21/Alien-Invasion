@@ -13,9 +13,9 @@ class Scoreboard:
         self.font_color = (30, 30, 30)
         self.font = pygame.font.SysFont(None, 48)
 
-        self._prep_scoreboard()
+        self.prep_scoreboard()
 
-    def _prep_scoreboard(self):
+    def prep_scoreboard(self):
         """Turn the text into an image and center it"""
         # get the score
         score_str = str(self.game_stats.score)

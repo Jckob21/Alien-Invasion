@@ -19,3 +19,7 @@ class Settings:
 
         # game related settings
         self.maximum_lives = 3
+
+        # scoring settings
+        self.alien_point_reward = 50
+        self.alien_hit_ground_deduction = 20

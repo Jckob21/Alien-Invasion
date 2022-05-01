@@ -178,8 +178,10 @@ class AlienInvasion:
         """Checks collisions in the game"""
         # check if any bullet hit the alien
         collisions = pygame.sprite.groupcollide(self.bullets, self.aliens, True, True)
-        for _ in collisions:
-            self.bullets_counter -= 1
+
+        self.bullets_counter -= len(collisions)
+        self.game_stats.score += len(collisions) * self.settings.alien_point_reward
+        self.scoreboard.prep_scoreboard()
 
         # check if any alien collided with the ship
         if pygame.sprite.spritecollideany(self.ship, self.aliens):
@@ -214,7 +216,7 @@ class AlienInvasion:
         for alien in self.aliens.copy():
             if alien.rect.bottom >= self.screen.get_rect().bottom:
                 self.aliens.remove(alien)
-                print("Alien should be deleted and score deducted")
+                self.game_stats.score -= self.settings.alien_hit_ground_deduction
 
 
 if __name__ == '__main__':
