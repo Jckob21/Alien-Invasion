@@ -105,13 +105,15 @@ class AlienInvasion:
     def _handle_mouse_down(self):
         """Handles mouse down event"""
         mouse_position = pygame.mouse.get_pos()
-        if self.start_button.rect.collidepoint(mouse_position):
+        if self.start_button.rect.collidepoint(mouse_position) and not self.game_stats.game_active:
             self._on_start_button_clicked()
 
     def _on_start_button_clicked(self):
         """Restarts the game"""
         self.game_stats.reset_stats()
         self.game_stats.game_active = True
+        # hide the mouse cursor
+        pygame.mouse.set_visible(False)
 
     def _update_screen(self):
         """Updates screen according to current state of the game."""
@@ -184,8 +186,9 @@ class AlienInvasion:
 
         if self.game_stats.lives_remaining == 0:
             self.game_stats.game_active = False
-
-        self._regenerate_fleet()
+            pygame.mouse.set_visible(True)
+        else:
+            self._regenerate_fleet()
 
     def _regenerate_fleet(self):
         """Regenerates aliens, centers the ship"""
