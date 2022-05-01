@@ -110,6 +110,7 @@ class AlienInvasion:
 
     def _on_start_button_clicked(self):
         """Restarts the game"""
+        self.game_stats.reset_stats()
         self.game_stats.game_active = True
 
     def _update_screen(self):
