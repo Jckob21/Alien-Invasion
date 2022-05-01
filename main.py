@@ -8,7 +8,7 @@ from ship import Ship
 from bullet import Bullet
 from alien import Alien
 from game_stats import GameStats
-
+from button import Button
 
 class AlienInvasion:
     """This class is the main class of the Alien Invasion game. You can start the game by calling run_game."""
@@ -26,6 +26,9 @@ class AlienInvasion:
 
         # Create a game stats object
         self.game_stats = GameStats(self)
+
+        # Create a button object
+        self.start_button = Button(self, "START")
 
         # Create a ship
         self.ship = Ship(self)
@@ -105,6 +108,7 @@ class AlienInvasion:
             bullet.draw_bullet()
         for alien in self.aliens.sprites():
             alien.draw_alien()
+        self.start_button.draw_button()
 
         # Update the image view
         pygame.display.flip()
