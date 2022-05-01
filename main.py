@@ -120,7 +120,10 @@ class AlienInvasion:
             bullet.draw_bullet()
         for alien in self.aliens.sprites():
             alien.draw_alien()
-        self.start_button.draw_button()
+
+        # Print the button if the game is paused
+        if not self.game_stats.game_active:
+            self.start_button.draw_button()
 
         # Update the image view
         pygame.display.flip()
