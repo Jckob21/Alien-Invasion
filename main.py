@@ -74,7 +74,7 @@ class AlienInvasion:
             elif event.type == pygame.KEYUP:
                 self._handle_key_up(event)
             elif event.type == pygame.MOUSEBUTTONDOWN:
-                self._handle_mouse_down(event)
+                self._handle_mouse_down()
 
     def _handle_key_up(self, event):
         """Handles key up events."""
@@ -102,7 +102,7 @@ class AlienInvasion:
         elif event.key == pygame.K_SPACE:
             self._fire_bullet()
 
-    def _handle_mouse_down(self, event):
+    def _handle_mouse_down(self):
         """Handles mouse down event"""
         mouse_position = pygame.mouse.get_pos()
         if self.start_button.rect.collidepoint(mouse_position):
