@@ -73,6 +73,8 @@ class AlienInvasion:
                 self._handle_key_down(event)
             elif event.type == pygame.KEYUP:
                 self._handle_key_up(event)
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                self._handle_mouse_down(event)
 
     def _handle_key_up(self, event):
         """Handles key up events."""
@@ -99,6 +101,16 @@ class AlienInvasion:
             sys.exit()
         elif event.key == pygame.K_SPACE:
             self._fire_bullet()
+
+    def _handle_mouse_down(self, event):
+        """Handles mouse down event"""
+        mouse_position = pygame.mouse.get_pos()
+        if self.start_button.rect.collidepoint(mouse_position):
+            self._on_start_button_clicked()
+
+    def _on_start_button_clicked(self):
+        """Restarts the game"""
+        self.game_stats.game_active = True
 
     def _update_screen(self):
         """Updates screen according to current state of the game."""
