@@ -216,7 +216,9 @@ class AlienInvasion:
         for alien in self.aliens.copy():
             if alien.rect.bottom >= self.screen.get_rect().bottom:
                 self.aliens.remove(alien)
+                # update score and scoreboard image
                 self.game_stats.score -= self.settings.alien_hit_ground_deduction
+                self.scoreboard.prep_scoreboard()
 
 
 if __name__ == '__main__':
