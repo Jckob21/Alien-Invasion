@@ -20,11 +20,11 @@ class Scoreboard:
         # get the score
         score_str = str(self.game_stats.score)
 
-        self.scoreboard_image = self.font.render(score_str, True, self.font_color, self.settings.bg_color)
-        self.scoreboard_image_rect = self.scoreboard_image.get_rect()
-        self.scoreboard_image_rect.top = 20
-        self.scoreboard_image_rect.right = self.screen_rect.right - 20
+        self.score_image = self.font.render(score_str, True, self.font_color, self.settings.bg_color)
+        self.score_image_rect = self.score_image.get_rect()
+        self.score_image_rect.top = 20
+        self.score_image_rect.right = self.screen_rect.right - 20
 
     def draw_scoreboard(self):
         """Draw the scoreboard on the screen"""
-        self.screen.blit(self.scoreboard_image, self.scoreboard_image_rect)
+        self.screen.blit(self.score_image, self.score_image_rect)
