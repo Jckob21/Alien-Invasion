@@ -13,10 +13,10 @@ class Scoreboard:
         self.font_color = (30, 30, 30)
         self.font = pygame.font.SysFont(None, 48)
 
-        self.prep_scoreboard()
+        self.prep_score()
 
-    def prep_scoreboard(self):
-        """Turn the text into an image and center it"""
+    def prep_score(self):
+        """Get the score, turn it into an image and align it to the right side."""
         # get the score
         score_str = str(self.game_stats.score)
 
@@ -24,6 +24,10 @@ class Scoreboard:
         self.score_image_rect = self.score_image.get_rect()
         self.score_image_rect.top = 20
         self.score_image_rect.right = self.screen_rect.right - 20
+
+    def prep_highest_score(self):
+        """Get the highest score, turn it into an image and center it."""
+
 
     def draw_scoreboard(self):
         """Draw the scoreboard on the screen"""

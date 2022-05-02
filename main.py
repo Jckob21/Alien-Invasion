@@ -181,7 +181,7 @@ class AlienInvasion:
 
         self.bullets_counter -= len(collisions)
         self.game_stats.score += len(collisions) * self.settings.alien_point_reward
-        self.scoreboard.prep_scoreboard()
+        self.scoreboard.prep_score()
 
         # check if any alien collided with the ship
         if pygame.sprite.spritecollideany(self.ship, self.aliens):
@@ -218,7 +218,7 @@ class AlienInvasion:
                 self.aliens.remove(alien)
                 # update score and scoreboard image
                 self.game_stats.score -= self.settings.alien_hit_ground_deduction
-                self.scoreboard.prep_scoreboard()
+                self.scoreboard.prep_score()
 
 
 if __name__ == '__main__':
