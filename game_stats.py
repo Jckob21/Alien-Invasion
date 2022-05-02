@@ -2,6 +2,7 @@
 class GameStats:
     def __init__(self, ai_game):
         self.settings = ai_game.settings
+        self.highest_score = 0
 
         # reset stats
         self.reset_stats()

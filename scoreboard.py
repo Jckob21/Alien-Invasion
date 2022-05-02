@@ -5,14 +5,18 @@ class Scoreboard:
     """Class to handle Scoreboard"""
     def __init__(self, ai_game):
         """Initialize a scoreboard"""
+        self.highest_score_image_rect = None
+        self.highest_score_image = None
         self.screen = ai_game.screen
         self.screen_rect = self.screen.get_rect()
         self.settings = ai_game.settings
         self.game_stats = ai_game.game_stats
 
         self.font_color = (30, 30, 30)
+        self.highest_font_color = (120, 120, 120)
         self.font = pygame.font.SysFont(None, 48)
 
+        self.prep_highest_score()
         self.prep_score()
 
     def prep_score(self):
@@ -27,8 +31,15 @@ class Scoreboard:
 
     def prep_highest_score(self):
         """Get the highest score, turn it into an image and center it."""
+        highest_score_txt = str(self.game_stats.highest_score)
 
+        self.highest_score_image = self.font.render(highest_score_txt, True, self.highest_font_color, self.settings.bg_color)
+        self.highest_score_image_rect = self.highest_score_image.get_rect()
+        # align it to the center of the screen
+        self.highest_score_image_rect.center = self.screen_rect.center
+        self.highest_score_image_rect.top = 20
 
     def draw_scoreboard(self):
         """Draw the scoreboard on the screen"""
         self.screen.blit(self.score_image, self.score_image_rect)
+        self.screen.blit(self.highest_score_image, self.highest_score_image_rect)
