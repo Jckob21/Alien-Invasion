@@ -5,8 +5,6 @@ class Scoreboard:
     """Class to handle Scoreboard"""
     def __init__(self, ai_game):
         """Initialize a scoreboard"""
-        self.highest_score_image_rect = None
-        self.highest_score_image = None
         self.screen = ai_game.screen
         self.screen_rect = self.screen.get_rect()
         self.settings = ai_game.settings
