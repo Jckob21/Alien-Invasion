@@ -1,4 +1,5 @@
 import pygame.font
+from ship import Ship
 
 
 class Scoreboard:
@@ -10,12 +11,16 @@ class Scoreboard:
         self.settings = ai_game.settings
         self.game_stats = ai_game.game_stats
 
+        # save the reference to the game to instantiate ships later on
+        self.ai_game = ai_game
+
         self.font_color = (30, 30, 30)
         self.highest_font_color = (120, 120, 120)
         self.font = pygame.font.SysFont(None, 48)
 
         self.prep_highest_score()
         self.prep_score()
+        self.prep_ships_left()
 
     def prep_score(self):
         """Get the score, turn it into an image and align it to the right side."""
@@ -37,7 +42,18 @@ class Scoreboard:
         self.highest_score_image_rect.center = self.screen_rect.center
         self.highest_score_image_rect.top = 20
 
+    def prep_ships_left(self):
+        """Create a group of ships representing lives_remaining and align it to the left top side."""
+        self.ships = pygame.sprite.Group()
+        for ship_number in range(self.game_stats.lives_remaining):
+            ship = Ship(self.ai_game)
+            self.ships.add(ship)
+
+            ship.rect.x = 10 + ship_number * ship.rect.width
+            ship.rect.y = 10
+
     def draw_scoreboard(self):
         """Draw the scoreboard on the screen"""
         self.screen.blit(self.score_image, self.score_image_rect)
         self.screen.blit(self.highest_score_image, self.highest_score_image_rect)
+        self.ships.draw(self.screen)
