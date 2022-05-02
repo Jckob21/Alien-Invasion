@@ -195,22 +195,26 @@ class AlienInvasion:
         if self.game_stats.lives_remaining == 0:
             self.game_stats.game_active = False
             pygame.mouse.set_visible(True)
-        else:
-            self._regenerate_fleet()
+            # update highest score
+            if self.game_stats.score > self.game_stats.highest_score:
+                self.game_stats.highest_score = self.game_stats.score
+                self.scoreboard.prep_highest_score()
+
+        self._regenerate_fleet()
 
     def _regenerate_fleet(self):
         """Regenerates aliens, centers the ship"""
-        if self.game_stats.game_active:
-            # Empty aliens
-            self.aliens.empty()
-            self.bullets.empty()
 
-            # Create new fleet and center the ship
-            self._create_fleet(self.fleet_positions, 100)
-            self.ship.center_ship()
+        # Empty aliens
+        self.aliens.empty()
+        self.bullets.empty()
 
-            # Pause
-            sleep(0.5)
+        # Create new fleet and center the ship
+        self._create_fleet(self.fleet_positions, 100)
+        self.ship.center_ship()
+
+        # Pause
+        sleep(0.5)
 
     def _check_aliens_touch_the_bottom(self):
         for alien in self.aliens.copy():
