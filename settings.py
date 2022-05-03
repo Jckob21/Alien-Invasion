@@ -23,3 +23,7 @@ class Settings:
         # scoring settings
         self.alien_point_reward = 50
         self.alien_hit_ground_deduction = 20
+
+        # fleet generation settings
+        self.initial_generation_time = 2.0
+

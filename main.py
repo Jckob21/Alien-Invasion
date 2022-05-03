@@ -3,6 +3,7 @@ from time import sleep
 
 import pygame
 
+import fleet_generator
 from settings import Settings
 from ship import Ship
 from bullet import Bullet
@@ -48,6 +49,7 @@ class AlienInvasion:
         self.fleet_positions = self._get_fleet_positions()
         self._create_fleet(self.fleet_positions, -100)
         self.fleet_generator = FleetGenerator(self)
+        self.fleet_generator.start()
 
         pygame.display.set_caption("alien invasion")
 
@@ -74,7 +76,7 @@ class AlienInvasion:
         """Checks for existing events and handles them."""
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                sys.exit()
+                self.shut_down()
             elif event.type == pygame.KEYDOWN:
                 self._handle_key_down(event)
             elif event.type == pygame.KEYUP:
@@ -104,7 +106,7 @@ class AlienInvasion:
         elif event.key == pygame.K_DOWN:
             self.ship.moving_down = True
         elif event.key == pygame.K_q:
-            sys.exit()
+            self.shut_down()
         elif event.key == pygame.K_SPACE:
             self._fire_bullet()
 
@@ -121,6 +123,12 @@ class AlienInvasion:
         self.game_stats.game_active = True
         # hide the mouse cursor
         pygame.mouse.set_visible(False)
+
+    def shut_down(self):
+        """Shut down the game"""
+        self.fleet_generator.stop_flag = True
+        self.fleet_generator.join()
+        sys.exit()
 
     def _update_screen(self):
         """Updates screen according to current state of the game."""

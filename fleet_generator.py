@@ -1,7 +1,30 @@
+import threading
+from time import sleep
 
 
-class FleetGenerator:
-    """Class responsible for genereting fleets every x time."""
+class FleetGenerator(threading.Thread):
+
     def __init__(self, ai_game):
+        super().__init__()
         self.settings = ai_game.settings
-        print("Fleet generator created")
+        self.game_stats = ai_game.game_stats
+        self.ai_game = ai_game
+        self.stop_flag = False
+
+        self.generation_time = 40
+        self.time = 0
+
+    def run(self):
+        """Generate fleet every 5 seconds"""
+        # while True:
+        #     self.ai_game._create_fleet(self.ai_game.fleet_positions, -100)
+        #     time.sleep(4)
+        #     if self.stop_flag:
+        #         break
+        while not self.stop_flag:
+            print(f"time: {self.time} / {self.generation_time}")
+            sleep(0.1)
+            self.time += 1
+            if self.time >= self.generation_time:
+                self.ai_game._create_fleet(self.ai_game.fleet_positions, -100)
+                self.time = 0
