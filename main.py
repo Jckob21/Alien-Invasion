@@ -10,6 +10,7 @@ from alien import Alien
 from game_stats import GameStats
 from button import Button
 from scoreboard import Scoreboard
+from fleet_generator import FleetGenerator
 
 class AlienInvasion:
     """This class is the main class of the Alien Invasion game. You can start the game by calling run_game."""
@@ -46,6 +47,7 @@ class AlienInvasion:
         # Create a fleet of aliens
         self.fleet_positions = self._get_fleet_positions()
         self._create_fleet(self.fleet_positions, -100)
+        self.fleet_generator = FleetGenerator(self)
 
         pygame.display.set_caption("alien invasion")
 
