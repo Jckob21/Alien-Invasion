@@ -45,7 +45,7 @@ class AlienInvasion:
 
         # Create a fleet of aliens
         self.fleet_positions = self._get_fleet_positions()
-        self._create_fleet(self.fleet_positions, 100)
+        self._create_fleet(self.fleet_positions, -100)
 
         pygame.display.set_caption("alien invasion")
 
@@ -115,6 +115,7 @@ class AlienInvasion:
     def _on_start_button_clicked(self):
         """Restarts the game"""
         self.game_stats.reset_stats()
+        self.scoreboard.prep_ships_left()
         self.game_stats.game_active = True
         # hide the mouse cursor
         pygame.mouse.set_visible(False)
@@ -191,6 +192,7 @@ class AlienInvasion:
         """Handles collision of ship and an alien"""
         # subtract lives_remaining
         self.game_stats.lives_remaining -= 1
+        self.scoreboard.prep_ships_left()
 
         if self.game_stats.lives_remaining == 0:
             self.game_stats.game_active = False
