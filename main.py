@@ -29,6 +29,7 @@ class AlienInvasion:
 
         # Create a game stats object
         self.game_stats = GameStats(self)
+        self.game_stats.retrieve_saved_highest_score()
 
         # Create a button object
         self.start_button = Button(self, "START")
@@ -126,6 +127,7 @@ class AlienInvasion:
 
     def shut_down(self):
         """Shut down the game"""
+        self.game_stats.save_highest_score()
         self.fleet_generator.stop_flag = True
         self.fleet_generator.join()
         sys.exit()

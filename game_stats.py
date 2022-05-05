@@ -1,3 +1,6 @@
+import json
+
+highest_score_filename = "data.txt"
 
 class GameStats:
     def __init__(self, ai_game):
@@ -15,3 +18,14 @@ class GameStats:
 
         self.rounds_count = self.settings.rounds_count_default
         self.generation_time = 40
+
+    def retrieve_saved_highest_score(self):
+        try:
+            with open(highest_score_filename, 'r') as file:
+                self.highest_score = json.load(file)
+        except FileNotFoundError:
+            self.highest_score = 0
+
+    def save_highest_score(self):
+        with open(highest_score_filename, 'w') as file:
+            json.dump(self.highest_score, file)
