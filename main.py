@@ -3,7 +3,6 @@ from time import sleep
 
 import pygame
 
-import fleet_generator
 from settings import Settings
 from ship import Ship
 from bullet import Bullet
@@ -12,6 +11,7 @@ from game_stats import GameStats
 from button import Button
 from scoreboard import Scoreboard
 from fleet_generator import FleetGenerator
+
 
 class AlienInvasion:
     """This class is the main class of the Alien Invasion game. You can start the game by calling run_game."""
@@ -232,6 +232,7 @@ class AlienInvasion:
         sleep(0.5)
 
     def _check_aliens_touch_the_bottom(self):
+        """Checks if any aliens hit the ground. If true, removes them and deducts the score"""
         for alien in self.aliens.copy():
             if alien.rect.bottom >= self.screen.get_rect().bottom:
                 self.aliens.remove(alien)

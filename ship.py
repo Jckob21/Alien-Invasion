@@ -48,6 +48,7 @@ class Ship(Sprite):
         self.rect.y = self.y
 
     def center_ship(self):
+        """Centers the ship."""
         self.rect.midbottom = self.screen_rect.midbottom
 
         self.x = float(self.rect.x)

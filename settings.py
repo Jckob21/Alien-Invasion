@@ -2,6 +2,7 @@ class Settings:
     """Stores all setting for the game."""
 
     def __init__(self):
+        """Creates an instance of settings initializing all values."""
         self.screen_width = 1200
         self.screen_height = 800
         self.bg_color = (230, 230, 230)
@@ -27,4 +28,3 @@ class Settings:
         # fleet generation settings
         self.initial_generation_time = 2.0
         self.rounds_count_default = 5
-
