@@ -9,6 +9,7 @@ class Alien(Sprite):
         super().__init__()
         self.screen = ai_game.screen
         self.settings = ai_game.settings
+        self.game_stats = ai_game.game_stats
         self.screen_rect = ai_game.screen.get_rect()
 
         # Load the alien image
@@ -28,5 +29,5 @@ class Alien(Sprite):
 
     def update(self):
         """Updates the alien attributes"""
-        self.y += self.settings.alien_speed
+        self.y += self.game_stats.alien_speed
         self.rect.y = self.y

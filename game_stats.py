@@ -11,3 +11,4 @@ class GameStats:
         self.lives_remaining = self.settings.maximum_lives
         self.game_active = False
         self.score = 0
+        self.alien_speed = self.settings.alien_speed_default

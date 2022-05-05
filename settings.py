@@ -15,7 +15,7 @@ class Settings:
         self.bullets_allowed = 4
 
         # alien settings
-        self.alien_speed = 0.1
+        self.alien_speed_default = 0.1
 
         # game related settings
         self.maximum_lives = 3
