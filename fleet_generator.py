@@ -11,26 +11,23 @@ class FleetGenerator(threading.Thread):
         self.ai_game = ai_game
         self.stop_flag = False
 
-        self.generation_time = 40
         self.time = 0
 
         self.round = 0
-        self.rounds_count = self.settings.rounds_count_default
 
     def run(self):
         """Generate fleet every 4 seconds"""
         while not self.stop_flag:
             if self.game_stats.game_active:
-                print(f"time: {self.time} / {self.generation_time}")
                 sleep(0.1)
                 self.time += 1
-                if self.time >= self.generation_time:
+                if self.time >= self.game_stats.generation_time:
                     self._generate()
 
     def _generate(self):
         self.ai_game._create_fleet(self.ai_game.fleet_positions, -100)
         self.round += 1
-        if self.round >= self.rounds_count:
+        if self.round >= self.game_stats.rounds_count:
             self.round = 0
             sleep(3)
             self._delegate_difficulty_increase(random.randint(0, 3))
@@ -42,11 +39,16 @@ class FleetGenerator(threading.Thread):
             print(f"Alien speed up difficulty")
             self.game_stats.alien_speed += 0.05
         elif number == 1:
-            print("Round bigger difficulty")
+            print("Round longer difficulty")
+            self.game_stats.rounds_count += 2
+
         elif number == 2:
             print("Generation time decreased")
+            self.game_stats.generation_time -= 4
+            if self.game_stats.generation_time <= 0:
+                self.game_stats.generation_time = 2
 
 
     def reset_round(self):
-        self.time = self.generation_time
+        self.time = self.game_stats.generation_time
         self.round = 0

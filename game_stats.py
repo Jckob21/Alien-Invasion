@@ -12,3 +12,6 @@ class GameStats:
         self.game_active = False
         self.score = 0
         self.alien_speed = self.settings.alien_speed_default
+
+        self.rounds_count = self.settings.rounds_count_default
+        self.generation_time = 40

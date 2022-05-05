@@ -207,7 +207,7 @@ class AlienInvasion:
         if self.game_stats.lives_remaining == 0:
             self.game_stats.game_active = False
             pygame.mouse.set_visible(True)
-            # update highest score
+            # update the highest score
             if self.game_stats.score > self.game_stats.highest_score:
                 self.game_stats.highest_score = self.game_stats.score
                 self.scoreboard.prep_highest_score()
