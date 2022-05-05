@@ -4,7 +4,8 @@ from pygame.sprite import Sprite
 
 class Alien(Sprite):
     """Class representing an alien"""
-    def __init__(self, ai_game, x_topmid = 100, y_topmid = 100):
+
+    def __init__(self, ai_game, x_topmid=100, y_topmid=100):
         """Creates an instance of an alien"""
         super().__init__()
         self.screen = ai_game.screen
@@ -24,7 +25,7 @@ class Alien(Sprite):
         self.y = float(self.rect.y)
 
     def draw_alien(self):
-        """Draws an item"""
+        """Draws an alien"""
         self.screen.blit(self.image, self.rect)
 
     def update(self):

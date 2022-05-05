@@ -3,6 +3,7 @@ import pygame.font
 
 class Button:
     """class to handle Button"""
+
     def __init__(self, ai_game, msg):
         """Initializes button attributes"""
         self.screen = ai_game.screen
@@ -27,6 +28,6 @@ class Button:
         self.msg_image_rect.center = self.rect.center
 
     def draw_button(self):
-        """Draw a button with the message"""
+        """Draws a button with the message"""
         self.screen.fill(self.button_color, self.rect)
         self.screen.blit(self.msg_image, self.msg_image_rect)

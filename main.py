@@ -182,7 +182,7 @@ class AlienInvasion:
             i += 1
         return positions
 
-    def _create_fleet(self, x_positions, y):
+    def create_fleet(self, x_positions, y):
         """Creates a fleet of aliens"""
         for x_position in x_positions:
             self.aliens.add(Alien(self, x_position, y))
