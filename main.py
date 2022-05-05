@@ -48,7 +48,7 @@ class AlienInvasion:
         # Create a fleet of aliens
         self.fleet_positions = self._get_fleet_positions()
         self.fleet_generator = FleetGenerator(self)
-        self.fleet_generator.set_generation_time()
+        self.fleet_generator.reset_round()
         self.fleet_generator.start()
 
         pygame.display.set_caption("alien invasion")
@@ -224,7 +224,7 @@ class AlienInvasion:
         # Create new fleet and center the ship
         self.ship.center_ship()
 
-        self.fleet_generator.set_generation_time()
+        self.fleet_generator.reset_round()
 
         # Pause
         sleep(0.5)
