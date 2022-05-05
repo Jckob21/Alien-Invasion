@@ -14,6 +14,9 @@ class FleetGenerator(threading.Thread):
         self.generation_time = 40
         self.time = 0
 
+        self.round = 0
+        self.rounds_count = self.settings.rounds_count_default
+
     def run(self):
         """Generate fleet every 4 seconds"""
         while not self.stop_flag:
@@ -23,6 +26,10 @@ class FleetGenerator(threading.Thread):
                 self.time += 1
                 if self.time >= self.generation_time:
                     self.ai_game._create_fleet(self.ai_game.fleet_positions, -100)
+                    self.round += 1
+                    if self.round >= self.rounds_count:
+                        self.round = 0
+                        sleep(3)
                     # self.game_stats.alien_speed += 0.01
                     self.time = 0
 

@@ -26,4 +26,5 @@ class Settings:
 
         # fleet generation settings
         self.initial_generation_time = 2.0
+        self.rounds_count_default = 5
 
