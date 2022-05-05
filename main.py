@@ -47,8 +47,8 @@ class AlienInvasion:
 
         # Create a fleet of aliens
         self.fleet_positions = self._get_fleet_positions()
-        self._create_fleet(self.fleet_positions, -100)
         self.fleet_generator = FleetGenerator(self)
+        self.fleet_generator.set_generation_time()
         self.fleet_generator.start()
 
         pygame.display.set_caption("alien invasion")
