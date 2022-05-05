@@ -212,9 +212,9 @@ class AlienInvasion:
                 self.game_stats.highest_score = self.game_stats.score
                 self.scoreboard.prep_highest_score()
 
-        self._regenerate_fleet()
+        self._regenerate_map()
 
-    def _regenerate_fleet(self):
+    def _regenerate_map(self):
         """Regenerates aliens, centers the ship"""
 
         # Empty aliens
@@ -222,8 +222,9 @@ class AlienInvasion:
         self.bullets.empty()
 
         # Create new fleet and center the ship
-        self._create_fleet(self.fleet_positions, 100)
         self.ship.center_ship()
+
+        self.fleet_generator.set_generation_time
 
         # Pause
         sleep(0.5)

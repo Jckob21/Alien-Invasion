@@ -16,11 +16,6 @@ class FleetGenerator(threading.Thread):
 
     def run(self):
         """Generate fleet every 4 seconds"""
-        # while True:
-        #     self.ai_game._create_fleet(self.ai_game.fleet_positions, -100)
-        #     time.sleep(4)
-        #     if self.stop_flag:
-        #         break
         while not self.stop_flag:
             if self.game_stats.game_active:
                 print(f"time: {self.time} / {self.generation_time}")
