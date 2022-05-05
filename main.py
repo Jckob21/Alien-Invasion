@@ -224,7 +224,7 @@ class AlienInvasion:
         # Create new fleet and center the ship
         self.ship.center_ship()
 
-        self.fleet_generator.set_generation_time
+        self.fleet_generator.set_generation_time()
 
         # Pause
         sleep(0.5)
